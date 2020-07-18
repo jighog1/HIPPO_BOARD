@@ -1,0 +1,22 @@
+2020-07-18 16:43:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT PARAM1 AS PARAM1
+	     , PARAM2 AS PARAM2
+	     , PARAM3 AS PARAM3
+	FROM TEST 
+	WHERE KEY =[*] #(KEY)"; SQL statement:
+SELECT param1 as param1
+	     , param2 as param2
+	     , param3 as param3
+	FROM test 
+	WHERE key = #(key) [42000-200]
+2020-07-18 16:43:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT PARAM1 AS PARAM1
+	     , PARAM2 AS PARAM2
+	     , PARAM3 AS PARAM3
+	FROM TEST 
+	WHERE KEY =[*] #(KEY)"; SQL statement:
+SELECT param1 as param1
+	     , param2 as param2
+	     , param3 as param3
+	FROM test 
+	WHERE key = #(key) [42000-200]
