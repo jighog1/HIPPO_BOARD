@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,4 +34,18 @@ public class TestController {
 		return testservice.getTests();
 	}
 	
+	@RequestMapping(value = "/gettest", method = {RequestMethod.POST})
+	public int insertTest(@RequestBody TestVO test) {
+		return this.testservice.insertTest(test);
+	}
+	
+	@RequestMapping(value = "/gettest/{key}", method = {RequestMethod.DELETE})
+	public int deleteTest(@PathVariable(name = "key", required = true) int key) {
+		return testservice.deleteTest(key);
+	}
+	
+	@RequestMapping(value = "/gettest", method = {RequestMethod.PUT})
+	public int updateTest(@RequestBody TestVO test) {
+		return this.testservice.updateTest(test);
+	}
 }
