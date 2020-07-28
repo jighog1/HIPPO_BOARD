@@ -6,6 +6,7 @@
 	SELECT param1 as param1
 	     , param2 as param2
 	     , param3 as param3
+	     , key as key
 	FROM test 
 	WHERE key = #{key}
 </select>
@@ -14,6 +15,7 @@
       SELECT param1 as param1
            , param2 as param2
            , param3 as param3
+           , key as key
       FROM test
       ORDER BY key DESC
 </select>

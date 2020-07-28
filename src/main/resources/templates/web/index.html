@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:each="test : ${tests}">
+	   	<a th:href="@{'/detail/' + ${test.key}}" th:text="${test.param1}"></a>
+	</div>
+
+</body>
+</html>
