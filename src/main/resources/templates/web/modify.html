@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/update" method="post">
+		<input type="hidden" name="key" th:value="${test.key}">
+		<input type="text" name="param1" th:value="${test.param1}">
+		<input type="text" name="param2" th:value="${test.param2}">
+		<input type="text" name="param3" th:value="${test.param3}">
+		<input type="submit" value="update">
+	</form>
+	
+</body>
+</html>

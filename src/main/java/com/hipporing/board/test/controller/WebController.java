@@ -27,13 +27,13 @@ public class WebController {
 		List<TestVO> tests = this.testService.getTests();
 		
 		model.addAttribute("tests", tests);
-		
+	/*	
 		for(TestVO test : tests) {
 			   System.out.println(test.getParam1());
 			   System.out.println(test.getParam2());
 			   System.out.println(test.getParam3());
 		}
-		
+	*/	
 		return "web/index";
 	}
 	
@@ -60,7 +60,26 @@ public class WebController {
 	
 	@RequestMapping(value = "delete", method = {RequestMethod.POST})
 	public String delete(TestVO test) {
+
 		testService.deleteTest(test.getKey());
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/modify/{key}", method = {RequestMethod.GET})
+	public String modify(@PathVariable(name = "key", required = true) int key, Model model) {
+		
+		TestVO test = testService.getTest(key);
+		model.addAttribute("test", test);
+		
+		return "web/modify";		
+	}
+
+	@RequestMapping(value = "update", method = {RequestMethod.POST})
+	public String update(TestVO test) {
+
+		System.out.println("updatetest: " + test.toString());
+		
+		testService.updateTest(test);
 		return "redirect:/";
 	}
 }
