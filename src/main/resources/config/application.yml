@@ -14,3 +14,13 @@ spring:
     livereload:      enabled: true
   thymeleaf:    cache: false
     
+    
+logging:
+  file:
+    path: C:/var/log
+  pattern:
+    console: "[%-5level] %d{yyyy-MM-dd HH:mm:ss} : %30logger{5} - %msg%n"
+    file: "[%-5level] %d{yyyy-MM-dd HH:mm:ss} : %30logger{5} - %msg%n"
+  level:
+    root: info
+    com.hipporing.board: debug

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hipporing.board.core.base.BaseController;
 import com.hipporing.board.test.service.LoginService;
 import com.hipporing.board.test.service.TestService;
 import com.hipporing.board.test.vo.LoginVO;
@@ -19,7 +22,8 @@ import com.hipporing.board.test.vo.TestVO;
 
 @Controller
 @RequestMapping(value="")
-public class WebController {
+public class WebController extends BaseController {
+
 	
 	@Autowired
 	private TestService testService;
@@ -35,6 +39,12 @@ public class WebController {
 		List<TestVO> tests = this.testService.getTests();
 		
 		model.addAttribute("tests", tests);
+		
+		this.log.trace("TRACE");
+		this.log.debug("DEBUG");
+		this.log.info("INFO");
+		this.log.warn("WARN");
+		this.log.error("ERROR");
 	/*	
 		for(TestVO test : tests) {
 			   System.out.println(test.getParam1());
@@ -51,14 +61,31 @@ public class WebController {
 	}
 	
 	@RequestMapping(value = "/write", method = {RequestMethod.POST})
-	public String postWrite(TestVO test) {
-		System.out.println(test.toString());
+	public String postWrite(TestVO test
+			, HttpServletRequest reg) {
+		
+		HttpSession session = reg.getSession();
+		String id = (String) session.getAttribute("id");
+				
+		test.setRegId(id);
+		
+		this.log.debug(test.toString());
+		//System.out.println(test.toString());
+		
 		this.testService.insertTest(test);
+		
 		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/detail/{key}", method = {RequestMethod.GET})
-	public String detail(@PathVariable(name = "key", required = true) int key, Model model) {
+	public String detail(@PathVariable(name = "key", required = true) int key
+			, Model model
+			, HttpServletRequest reg) {
+		
+		HttpSession session = reg.getSession();
+		String id = (String) session.getAttribute("id");
+		
+		model.addAttribute("userId", id);
 		
 		TestVO test = testService.getTest(key);
 		model.addAttribute("test", test);
